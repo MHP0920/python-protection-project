@@ -1,5 +1,10 @@
 # Dự án bảo vệ mã nguồn Python dành cho người Việt - Made by MHP0920 with 💖
 
+## Notice from author
+Please star ⭐ and fork this project if it helps you and the community, besides it's an effort for me to keep doing my work 🥰
+
+Hãy thả sao ⭐ và fork dự án này nếu nó giúp ích cho bạn và cả cộng đồng, hơn hết nó cũng là động lực để mình tiếp tục phát triển trong tương lai 🥰
+
 ## Copyright
 Copyright © MHP0920 2023. _This work is licensed under a [CC BY-ND 4.0 license](http://creativecommons.org/licenses/by-nd/4.0/)._
 
