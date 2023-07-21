@@ -11,14 +11,16 @@ Copyright © MHP0920 2023. _This work is licensed under a [CC BY-ND 4.0 license]
 ![image](https://i.creativecommons.org/l/by-nd/4.0/88x31.png)
 
 ## Mục lục
-- [Phần 1](#phần-1): Chuyển đổi Python thành tệp tin nén (.exe)
-  1. [Giới thiệu](#giới-thiệu)
-  2. [Cài đặt](#cài-đặt)
-- Phần 2: Bảo vệ string (Comming soon)
+- [Phần 1](#phần-1-py-to-exe): Chuyển đổi Python thành tệp tin nén (.exe)
+  1. Giới thiệu
+  2. Cài đặt
+- [Phần 2](#phần-2-bảo-vệ-string): Bảo vệ string
+  1. Giới thiệu
+  2. Các phương thức
 - Phần 3: MHP Key Trial Service (MHPKTS) (Comming soon)
 
 
-## Phần 1
+## Phần 1: PY-TO-EXE
 ### Giới thiệu
 Thông thường, chúng ta thường dùng [Pyinstaller](https://pyinstaller.org/) hoặc những thư viện khác để nén sản phẩm thành tệp tin ".exe", nhưng như vậy có thực sự an toàn?
 
@@ -58,5 +60,42 @@ os.system("<tên-tệp-exe>")
 ```
 Sau đó đóng gói đoạn mã với tệp tin nén .exe và Pyinstaller là được. Chúc các bạn thành công :)
 
-## Phần 2 (Comming Soon)
+## Phần 2: Bảo vệ String
+### Giới thiệu
+Ở số trước, chúng ta đã được tìm hiểu về cách bảo vệ mã nguồn bằng cách đổi qua mã máy, tuy vậy, vẫn còn một vấn đề không thể giải quyết bằng cách trên - **mã hóa string** trong mã nguồn.
+
+Tại sao phải mã hóa string? 
+
+Tưởng tượng bạn cần kiểm tra mật khẩu để cho phép sử dụng, nhưng reverse enginneer có thể **chỉnh sửa password** hoặc **đọc password** (Nếu bạn không hash) của bạn và sử dụng như bình thường. 
+Hay bạn đặt bản quyền bên trong app (e.g: Copyright (c) MHP0920 2023), reverse enginneer có thể chỉnh sửa thành (e.g: Copyright (c) MHPHacker 2023) và có thể bán lại mà không có vấn đề gì.
+
+String là một phần rất quan trọng trong một mã nguồn, thế nên bảo vệ là điều tất yếu.
+
+Reference: [Thay đổi string trong extension](https://www.facebook.com/100036713590904/videos/809772267409549/)
+
+### Các phương thức
+Để mã hóa string, có rất nhiều cách thức, trong số này chúng ta sẽ nghiên cứu 3 cách đơn giản nhất.
+
+#### Phân rải string
+Tưởng tượng, bạn có một string "code", khi nén thành file .exe, string "code" sẽ hiện trực tiếp trong binary và bạn có thể chỉnh sửa dễ dàng.
+
+Thay vì vậy, bạn hãy tạo một list có chứa tất cả kí tự alphabet-ALPHABET và lắp ghép tạo thành chữ "Hello World".
+
+e.g:
+```py
+lst = ['e', 'b', 'c', 'd', 'o']
+print(lst[2]+lst[4]+lst[3]+lst[0]) # --> code
+```
+
+Lúc này, khi nén thành file .exe, đoạn string "code" đã không còn, thay vào đó reverse enginneer sẽ thấy nhiều dòng kí tự là 'e' 'b' 'c' 'd' 'o' nhưng họ sẽ không biết dòng chữ này có ý nghĩa gì, và khiến việc reverse khó hơn. (Không phải là không thể nhé)
+
+#### Text shifting
+Ngoài cách load string từ list, chúng ta có thể dùng cách khác chính là Text shifting. Text shifting là một phương thức thêm hoặc bớt giá trị của [mã Unicode](https://en.wikipedia.org/wiki/List_of_Unicode_characters), nhằm thay đổi giá trị gốc của chuỗi.
+
+e.g: Mình sẽ shift đoạn string "abc" với giá trị là 1, nghĩa là mỗi mã Unicode của từng kí tự trong chuỗi sẽ tăng lên 1 -> "bcd"
+Các bạn có thể shift trong đoạn alphabet-ALPHABET hoặc shift đến các special Unicode, nếu như shift đến các special Unicode thì có thể đánh lừa reverse enginneer đoạn string của bạn là một binary. (Bạn có thể tìm hiểu thêm về minifier để hiểu rõ tại sao lại bị đánh lừa là binary)
+
+#### Load from cloud
+Cả 2 cách trên đều tăng khả năng bảo vệ string trong mã nguồn của bạn, thế nhưng không gì là an toàn tuyệt đối. Thay vì đặt string trong app, bạn có thể load chúng bằng cách liên kết API. Tuy nhiên cách này chỉ hiệu quả nếu như string là một loại rất quan trọng (dùng để active, để chạy lệnh, ...), nếu không thì reverse enginneer có thể redirect và load từ server của họ.
+
 ## Phần 3 (Comming soon)
