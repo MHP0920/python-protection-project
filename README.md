@@ -17,7 +17,7 @@ Copyright © MHP0920 2023. _This work is licensed under a [CC BY-ND 4.0 license]
 - [Phần 2](#phần-2-bảo-vệ-string): Bảo vệ string
   1. Giới thiệu
   2. Các phương thức
-- Phần 3: MHP Key Trial Service (MHPKTS) (Comming soon)
+- Phần 3: MHP Key Trial Service (MHPKTS) (Coming soon)
 
 
 ## Phần 1: PY-TO-EXE
