@@ -17,7 +17,7 @@ Copyright © MHP0920 2023. _This work is licensed under a [CC BY-ND 4.0 license]
 - [Phần 2](#phần-2-bảo-vệ-string): Bảo vệ string
   1. Giới thiệu
   2. Các phương thức
-- Phần 3: MHP Key Trial Service (MHPKTS) (Comming soon)
+- Phần 3: MHP Key Management Service (MHPKMS)
 
 
 ## Phần 1: PY-TO-EXE
@@ -98,4 +98,6 @@ Các bạn có thể shift trong đoạn alphabet-ALPHABET hoặc shift đến c
 #### Load from cloud
 Cả 2 cách trên đều tăng khả năng bảo vệ string trong mã nguồn của bạn, thế nhưng không gì là an toàn tuyệt đối. Thay vì đặt string trong app, bạn có thể load chúng bằng cách liên kết API. Tuy nhiên cách này chỉ hiệu quả nếu như string là một loại rất quan trọng (dùng để active, để chạy lệnh, ...), nếu không thì reverse enginneer có thể redirect và load từ server của họ.
 
-## Phần 3 (Comming soon)
+## Phần 3: MHP Key Management Service
+
+Full documentions: [MHPKMS Home Page](https://mhpkms.mhpteam.dev/docs/introduction)
